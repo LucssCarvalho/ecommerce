@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/tiles/categort_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -26,9 +27,15 @@ class _HomeTabState extends State<HomeTab> {
         CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.shopping_cart),
+                  onPressed: () {},
+                )
+              ],
               floating: true,
               snap: true,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.cyan,
               elevation: 0.0,
               flexibleSpace: FlexibleSpaceBar(
                 title: const Text(
@@ -39,12 +46,11 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ),
             FutureBuilder<QuerySnapshot>(
-              future: Firestore.instance.collection("home").getDocuments(),
+              future: Firestore.instance.collection("products").getDocuments(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return SliverToBoxAdapter(
                     child: Container(
-                      height: 200,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -52,17 +58,12 @@ class _HomeTabState extends State<HomeTab> {
                     ),
                   );
                 } else {
-                  return SliverGrid.count(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 1.0,
-                    crossAxisSpacing: 1.0,
-                    children: snapshot.data.documents.map((doc) {
-                      return FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: doc.data["image"],
-                        fit: BoxFit.cover,
-                      );
-                    }).toList(),
+                  return SliverList(
+                    delegate: SliverChildListDelegate(
+                      snapshot.data.documents.map((doc) {
+                        return CategoryTile(doc);
+                      }).toList(),
+                    ),
                   );
                 }
               },
