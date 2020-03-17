@@ -14,8 +14,15 @@ class CategoryScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {},
+            )
+          ],
           title: Text(
             snapshot.data['title'],
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           bottom: TabBar(
