@@ -30,7 +30,7 @@ class DrawerTile extends StatelessWidget {
                     size: 32,
                     color: controller.page.round() == page
                         ? Colors.white
-                        : Colors.grey[700]),
+                        : Colors.black),
                 SizedBox(
                   width: 32,
                 ),
@@ -40,7 +40,7 @@ class DrawerTile extends StatelessWidget {
                     fontSize: 16.0,
                     color: controller.page.round() == page
                         ? Colors.white
-                        : Colors.grey[700],
+                        : Colors.black,
                   ),
                 )
               ],
