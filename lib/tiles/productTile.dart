@@ -24,23 +24,32 @@ class ProductTile extends StatelessWidget {
                   children: <Widget>[
                     AspectRatio(
                       aspectRatio: 0.9,
-                      child: Image.network(
-                        product.images[0],
-                        fit: BoxFit.contain,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.network(
+                          product.images[0],
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     Container(
                       child: Column(
                         children: <Widget>[
-                          Text(product.title),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                            child: Text(product.title),
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
                                   'Preço: R\$ ${product.price.toStringAsFixed(2)}',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.cyan[600]),
                                 ),
                               ],
                             ),
@@ -76,8 +85,9 @@ class ProductTile extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     'Preço: R\$ ${product.price.toStringAsFixed(2)}',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.cyan[600]),
                                   ),
                                 ],
                               ),
