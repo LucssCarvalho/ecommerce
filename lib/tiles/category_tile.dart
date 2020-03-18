@@ -11,7 +11,7 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(1.0),
       child: Container(
         height: 200,
         decoration: BoxDecoration(
@@ -20,7 +20,6 @@ class CategoryTile extends StatelessWidget {
               fit: BoxFit.cover),
         ),
         child: ListTile(
-          title: Text(snapshot.data["title"]),
           trailing: Icon(Icons.keyboard_arrow_right),
           onTap: () {
             Navigator.of(context).push(

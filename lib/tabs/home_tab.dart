@@ -10,12 +10,12 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   Widget _buildBodyBack() => Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.cyan, Colors.cyan[900]],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-        ),
+        decoration: BoxDecoration(color: Colors.white
+            // gradient: LinearGradient(
+            //     colors: [Colors.cyan, Colors.cyan[900]],
+            //     begin: Alignment.topLeft,
+            //     end: Alignment.bottomRight),
+            ),
       );
 
   @override

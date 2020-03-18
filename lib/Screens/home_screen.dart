@@ -1,5 +1,4 @@
 import 'package:ecommerce/tabs/home_tab.dart';
-import 'package:ecommerce/tabs/products_tab.dart';
 import 'package:ecommerce/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             centerTitle: true,
           ),
           drawer: CustomDrawer(_pageController),
-          body: ProductsTab(),
+          body: HomeTab(),
         ),
         Container(
           color: Colors.blue,
