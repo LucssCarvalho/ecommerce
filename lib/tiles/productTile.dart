@@ -63,10 +63,13 @@ class ProductTile extends StatelessWidget {
                   children: <Widget>[
                     Flexible(
                       flex: 1,
-                      child: Image.network(
-                        product.images[0],
-                        fit: BoxFit.contain,
-                        height: 250,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.network(
+                          product.images[0],
+                          fit: BoxFit.contain,
+                          height: 190,
+                        ),
                       ),
                     ),
                     Flexible(
