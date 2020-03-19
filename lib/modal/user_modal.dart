@@ -40,13 +40,38 @@ class UserModel extends Model {
     });
   }
 
-  void signIn() async {
+  bool isLoggedIn() {
+    return firebaseUser != null;
+  }
+
+  void signOut() async {
+    await _auth.signOut();
+
+    userData = Map();
+    firebaseUser = null;
+
+    notifyListeners();
+  }
+
+  void signIn(
+      {@required String email,
+      @required String pass,
+      @required VoidCallback onSucess,
+      @required VoidCallback onFail}) async {
     isLoading = true;
     notifyListeners();
 
-    await Future.delayed(Duration(seconds: 3));
-    isLoading = false;
-    notifyListeners();
+    _auth.signInWithEmailAndPassword(email: email, password: pass).then((user) {
+      firebaseUser = user.user;
+
+      onSucess();
+      isLoading = false;
+      notifyListeners();
+    }).catchError((e) {
+      onFail();
+      isLoading = false;
+      notifyListeners();
+    });
   }
 
   void reconverPass() {}
