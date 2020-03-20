@@ -10,13 +10,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Login',
@@ -125,8 +126,20 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  void _onSucess() {
+    Navigator.of(context).pop();
+  }
+
+  void _onFail() {
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: Text(
+          'Falha ao entrar',
+        ),
+        backgroundColor: Colors.redAccent,
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
 }
-
-void _onSucess() {}
-
-void _onFail() {}
