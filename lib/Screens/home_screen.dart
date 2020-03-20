@@ -13,6 +13,19 @@ class HomeScreen extends StatelessWidget {
       children: <Widget>[
         Scaffold(
           body: HomeTab(),
+          appBar: AppBar(
+            title: Text(
+              'Catálogo',
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {},
+              )
+            ],
+          ),
           drawer: CustomDrawer(_pageController),
         ),
         Scaffold(
