@@ -20,56 +20,21 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        _buildBodyBack(),
-        CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.shopping_cart),
-                  onPressed: () {},
-                )
-              ],
-              floating: true,
-              snap: true,
-              backgroundColor: Colors.cyan,
-              elevation: 0.0,
-              flexibleSpace: FlexibleSpaceBar(
-                title: const Text(
-                  'Catálogo',
-                  style: TextStyle(color: Colors.white),
-                ),
-                centerTitle: true,
-              ),
-            ),
-            FutureBuilder<QuerySnapshot>(
-              future: Firestore.instance.collection("products").getDocuments(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return SliverToBoxAdapter(
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                    ),
-                  );
-                } else {
-                  return SliverList(
-                    delegate: SliverChildListDelegate(
-                      snapshot.data.documents.map((doc) {
-                        return CategoryTile(doc);
-                      }).toList(),
-                    ),
-                  );
-                }
-              },
-            ),
-          ],
-        ),
-      ],
+    return FutureBuilder<QuerySnapshot>(
+      future: Firestore.instance.collection("products").getDocuments(),
+      builder: (context, snapshop) {
+        if (!snapshop.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return ListView(
+            children: snapshop.data.documents.map((doc) {
+              return CategoryTile(doc);
+            }).toList(),
+          );
+        }
+      },
     );
   }
 }
