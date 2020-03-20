@@ -51,6 +51,16 @@ class _LoginScreenState extends State<LoginScreen> {
             child: ListView(
               padding: EdgeInsets.all(16.0),
               children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(15),
+                  child: CircleAvatar(
+                    radius: 70,
+                    child: Icon(
+                      Icons.person,
+                      size: 80,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(

@@ -33,19 +33,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          return SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/image/iconAddUser.png'))),
-                ),
-                Form(
+          return Column(
+            children: <Widget>[
+              Expanded(
+                child: Form(
                   key: _formKey,
                   child: ListView(
                     padding: EdgeInsets.all(16.0),
                     children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.all(15),
+                        child: CircleAvatar(
+                          radius: 70,
+                          child: Icon(
+                            Icons.person_add,
+                            size: 80,
+                          ),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
@@ -124,8 +129,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),
