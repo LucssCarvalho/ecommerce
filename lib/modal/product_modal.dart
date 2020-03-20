@@ -17,4 +17,8 @@ class ProductModal {
     images = snapshot.data["images"];
     colors = snapshot.data["colors"];
   }
+
+  Map<String, dynamic> toResumeMap() {
+    return {"title": title, "description": description, "price": price};
+  }
 }
