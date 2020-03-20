@@ -85,7 +85,9 @@ class UserModel extends Model {
     });
   }
 
-  void reconverPass() {}
+  void recoverPass(String email) {
+    _auth.sendPasswordResetEmail(email: email);
+  }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
@@ -95,7 +97,9 @@ class UserModel extends Model {
         .setData(userData);
   }
 
-  bool isLogged() {}
+  bool isLogged() {
+    return firebaseUser != null;
+  }
 
   Future<Null> _loadCurrentUser() async {
     if (firebaseUser == null) firebaseUser = await _auth.currentUser();

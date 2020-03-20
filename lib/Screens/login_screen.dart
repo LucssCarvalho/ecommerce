@@ -1,3 +1,4 @@
+import 'package:ecommerce/Screens/recoverPass.dart';
 import 'package:ecommerce/Screens/signup_screen.dart';
 import 'package:ecommerce/modal/user_modal.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +94,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       'esqueci minha senha',
                       style: TextStyle(color: Colors.cyan[300]),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => RecoverPassScreen(),
+                        ),
+                      );
+                    },
                     padding: EdgeInsets.zero,
                   ),
                 ),
