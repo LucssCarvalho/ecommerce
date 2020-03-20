@@ -25,25 +25,6 @@ class _HomeTabState extends State<HomeTab> {
         _buildBodyBack(),
         CustomScrollView(
           slivers: <Widget>[
-            SliverAppBar(
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.shopping_cart),
-                  onPressed: () {},
-                )
-              ],
-              floating: true,
-              snap: true,
-              backgroundColor: Colors.cyan,
-              elevation: 0.0,
-              flexibleSpace: FlexibleSpaceBar(
-                title: const Text(
-                  'Catálogo',
-                  style: TextStyle(color: Colors.white),
-                ),
-                centerTitle: true,
-              ),
-            ),
             FutureBuilder<QuerySnapshot>(
               future: Firestore.instance.collection("products").getDocuments(),
               builder: (context, snapshot) {
