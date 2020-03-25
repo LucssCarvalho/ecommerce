@@ -12,7 +12,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _buildDrawerBack() => Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.cyan, Colors.cyan[900]],
+              colors: [Colors.blue, Colors.blue[900]],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -34,12 +34,31 @@ class CustomDrawer extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     Positioned(
-                      top: 8,
+                      top: 20,
                       left: 0,
-                      child: Text(
-                        'Minha\nLoja',
-                        style: TextStyle(
-                            fontSize: 35, fontWeight: FontWeight.bold),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/logo_sacola.png'),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Sacola 111',
+                              style: TextStyle(
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Positioned(
