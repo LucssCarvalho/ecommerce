@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
               model: CartModel(model),
               child: MaterialApp(
                 title: 'Flutter Demo',
-                theme: ThemeData(
-                  primarySwatch: Colors.cyan,
-                ),
+                theme: ThemeData(primarySwatch: Colors.blue),
                 debugShowCheckedModeBanner: false,
                 home: HomeScreen(),
               ),

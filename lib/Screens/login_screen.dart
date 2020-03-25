@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: FlatButton(
                     child: Text(
                       'esqueci minha senha',
-                      style: TextStyle(color: Colors.cyan[300]),
+                      style: TextStyle(color: Colors.blue[300]),
                     ),
                     onPressed: () {
                       Navigator.of(context).push(
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
-                    color: Colors.cyan[600],
+                    color: Colors.blue[600],
                     onPressed: () {
                       //   if (_formKey.currentState.validate()) {}
 

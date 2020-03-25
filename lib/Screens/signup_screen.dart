@@ -109,7 +109,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                         ),
-                        color: Colors.cyan[600],
+                        color: Colors.blue[600],
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             Map<String, dynamic> userData = {
@@ -143,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         content: Text(
           'Usuário criado com sucesso!',
         ),
-        backgroundColor: Colors.cyan[600],
+        backgroundColor: Colors.blue[600],
         duration: Duration(seconds: 2),
       ),
     );

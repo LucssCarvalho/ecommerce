@@ -14,7 +14,7 @@ class _HomeTabState extends State<HomeTab> {
   Widget _buildBodyBack() => Container(
         decoration: BoxDecoration(color: Colors.white
             // gradient: LinearGradient(
-            //     colors: [Colors.cyan, Colors.cyan[900]],
+            //     colors: [Colors.blue, Colors.blue[900]],
             //     begin: Alignment.topLeft,
             //     end: Alignment.bottomRight),
             ),
@@ -55,14 +55,14 @@ class _HomeTabState extends State<HomeTab> {
                                     Text(
                                       'Saldo disponível:',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.cyan),
+                                          fontSize: 18, color: Colors.blue),
                                     ),
                                     Text(
                                       'R\$:0,00',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 20,
-                                          color: Colors.cyan[600]),
+                                          color: Colors.blue[600]),
                                     ),
                                   ],
                                 ),

@@ -69,7 +69,7 @@ class _RecoverPassScreenState extends State<RecoverPassScreen> {
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
-                  color: Colors.cyan[600],
+                  color: Colors.blue[600],
                   onPressed: () {
                     if (_emailController.text.isEmpty)
                       _scaffoldKey.currentState.showSnackBar(
@@ -85,7 +85,7 @@ class _RecoverPassScreenState extends State<RecoverPassScreen> {
                         SnackBar(
                           content: Text(
                               "Te encaminhamos um e-mail, confira sua caixa de entrada!"),
-                          backgroundColor: Colors.cyan[600],
+                          backgroundColor: Colors.blue[600],
                           duration: Duration(seconds: 5),
                         ),
                       );
