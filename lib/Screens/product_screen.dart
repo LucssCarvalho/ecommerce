@@ -118,7 +118,16 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(
                   height: 16.0,
                 ),
-                Text('Descrição'),
+                Divider(
+                  color: Colors.black,
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  'Descrição:',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+                ),
                 SizedBox(
                   height: 16.0,
                 ),
