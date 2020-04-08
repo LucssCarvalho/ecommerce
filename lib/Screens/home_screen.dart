@@ -1,4 +1,5 @@
 import 'package:ecommerce/tabs/home_tab.dart';
+import 'package:ecommerce/widgets/cart_button.dart';
 import 'package:ecommerce/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class HomeScreen extends StatelessWidget {
       children: <Widget>[
         Scaffold(
           body: HomeTab(),
+          floatingActionButton: CartButton(),
           appBar: AppBar(
             title: Text(
               'Catálogo',
@@ -20,10 +22,10 @@ class HomeScreen extends StatelessWidget {
             ),
             centerTitle: true,
             actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () {},
-              )
+              // IconButton(
+              //   icon: Icon(Icons.shopping_cart),
+              //   onPressed: () {},
+              // )
             ],
           ),
           drawer: CustomDrawer(_pageController),
