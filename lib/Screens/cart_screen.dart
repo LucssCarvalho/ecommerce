@@ -1,4 +1,7 @@
+import 'package:ecommerce/Screens/login_screen.dart';
 import 'package:ecommerce/modal/cart_modal.dart';
+import 'package:ecommerce/modal/user_modal.dart';
+import 'package:ecommerce/tiles/cartTile.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -24,6 +27,81 @@ class CartScreen extends StatelessWidget {
             ),
           )
         ],
+      ),
+      body: ScopedModelDescendant<CartModel>(
+        builder: (context, child, model) {
+          if (model.isLoading && UserModel.of(context).isLoggedIn()) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (!UserModel.of(context).isLoggedIn()) {
+            return Container(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.remove_shopping_cart,
+                    size: 80,
+                    color: Colors.blue[900],
+                  ),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  Text(
+                    'Faça o login para adicionar produtos!',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  RaisedButton(
+                    color: Colors.blue,
+                    child: Text(
+                      'Entrar',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+            );
+          } else if (model.products == null || model.products.length == 0) {
+            return Center(
+              child: Text(
+                'Nenhum produto no carrinho!',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            );
+          } else {
+            return ListView(
+              children: <Widget>[
+                Column(
+                  children: model.products.map(
+                    (product) {
+                      return CartTile(product);
+                    },
+                  ).toList(),
+                ),
+              ],
+            );
+          }
+        },
       ),
     );
   }
