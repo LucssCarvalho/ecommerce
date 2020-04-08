@@ -1,5 +1,9 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:ecommerce/Screens/login_screen.dart';
+import 'package:ecommerce/modal/cart_modal.dart';
+import 'package:ecommerce/modal/cart_product.dart';
 import 'package:ecommerce/modal/product_modal.dart';
+import 'package:ecommerce/modal/user_modal.dart';
 import 'package:flutter/material.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -108,10 +112,30 @@ class _ProductScreenState extends State<ProductScreen> {
                   height: 44.0,
                   child: RaisedButton(
                     child: Text(
-                      'Adicionar ao carrinho',
+                      UserModel.of(context).isLoggedIn()
+                          ? 'Adicionar ao carrinho'
+                          : 'Entre para comprar',
                       style: TextStyle(fontSize: 18.0, color: Colors.white),
                     ),
-                    onPressed: color != null ? () {} : null,
+                    onPressed: color != null
+                        ? () {
+                            if (UserModel.of(context).isLoggedIn()) {
+                              CartProduct cartProduct = CartProduct();
+                              cartProduct.colors = color;
+                              cartProduct.quantity = 1;
+                              cartProduct.pid = product.id;
+                              cartProduct.category = product.category;
+
+                              CartModel.of(context).addCartItem(cartProduct);
+                            } else {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            }
+                          }
+                        : null,
                     color: Colors.blue,
                   ),
                 ),
