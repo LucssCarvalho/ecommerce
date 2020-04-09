@@ -1,3 +1,4 @@
+import 'package:ecommerce/Screens/home_screen.dart';
 import 'package:ecommerce/Screens/login_screen.dart';
 import 'package:ecommerce/modal/user_modal.dart';
 import 'package:ecommerce/tiles/drawerTile.dart';
@@ -92,7 +93,12 @@ class CustomDrawer extends StatelessWidget {
                                       ),
                                     );
                                   else
-                                    model.signOut();
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeScreen(),
+                                      ),
+                                    );
+                                  model.signOut();
                                 },
                               )
                             ],
@@ -107,8 +113,12 @@ class CustomDrawer extends StatelessWidget {
               DrawerTile(Icons.home, "Início", pageController, 0),
               DrawerTile(
                   Icons.playlist_add_check, "Meus Pedidos", pageController, 1),
-              DrawerTile(Icons.question_answer, "Duvidas frequentes",
-                  pageController, 2),
+              UserModel.of(context).userData["userAdmin"] == true
+                  ? DrawerTile(Icons.lock_open, "Opções de administrador",
+                      pageController, 2)
+                  : Row(
+                      children: <Widget>[],
+                    )
             ],
           )
         ],
