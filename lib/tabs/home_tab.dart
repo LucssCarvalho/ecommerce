@@ -11,15 +11,6 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  Widget _buildBodyBack() => Container(
-        decoration: BoxDecoration(color: Colors.white
-            // gradient: LinearGradient(
-            //     colors: [Colors.blue, Colors.blue[900]],
-            //     begin: Alignment.topLeft,
-            //     end: Alignment.bottomRight),
-            ),
-      );
-
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(
