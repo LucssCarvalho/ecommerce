@@ -13,7 +13,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
-  final _adressController = TextEditingController();
+  final _userDocumentController = TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -27,114 +27,228 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         centerTitle: true,
       ),
-      body: ScopedModelDescendant<UserModel>(
-        builder: (context, child, model) {
-          if (model.isLoading)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          return Column(
-            children: <Widget>[
-              Expanded(
-                child: Form(
-                  key: _formKey,
-                  child: ListView(
-                    padding: EdgeInsets.all(16.0),
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(15),
-                        child: CircleAvatar(
-                          radius: 70,
-                          child: Icon(
-                            Icons.person_add,
-                            size: 80,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/background/signUp_wallpaper.png',
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ScopedModelDescendant<UserModel>(
+          builder: (context, child, model) {
+            if (model.isLoading)
+              return Center(
+                child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(),
+                    )),
+              );
+            return Column(
+              children: <Widget>[
+                Expanded(
+                  child: Form(
+                    key: _formKey,
+                    child: ListView(
+                      padding: EdgeInsets.all(16.0),
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.all(15),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.blue[500],
+                            radius: 70,
+                            child: Icon(
+                              Icons.person_add,
+                              color: Colors.white,
+                              size: 80,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: _nameController,
-                          decoration:
-                              InputDecoration(hintText: 'Nome Completo*'),
-                          validator: (text) {
-                            if (text.isEmpty || text.length < 5)
-                              return 'Nome inválido';
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(hintText: 'E-mail*'),
-                          validator: (text) {
-                            if (text.isEmpty || !text.contains('@'))
-                              return "E-mail inválido";
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: _passController,
-                          obscureText: true,
-                          decoration: InputDecoration(hintText: 'Senha*'),
-                          validator: (text) {
-                            if (text.isEmpty || text.length < 6)
-                              return 'Senha inválida';
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: _adressController,
-                          decoration: InputDecoration(hintText: 'Endereço*'),
-                          validator: (text) {
-                            if (text.isEmpty || text.length < 6)
-                              return 'Endereço invalido';
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      RaisedButton(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            'CADASTRAR',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                              hintText: 'Nome completo*',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
+                            ),
+                            validator: (text) {
+                              if (text.isEmpty || text.length < 5)
+                                return 'Nome inválido';
+                            },
                           ),
                         ),
-                        color: Colors.blue[600],
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            Map<String, dynamic> userData = {
-                              "name": _nameController.text,
-                              "email": _emailController.text,
-                              "adress": _adressController.text,
-                              "userAdmin": false,
-                              "value": 0
-                            };
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _userDocumentController,
+                            decoration: InputDecoration(
+                              hintText: 'CPF*',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              prefixIcon: Icon(
+                                Icons.insert_drive_file,
+                                color: Colors.black,
+                              ),
+                            ),
+                            validator: (text) {
+                              if (text.isEmpty || text.length < 11)
+                                return 'CPF invalido';
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              hintText: 'Email*',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              prefixIcon: Icon(
+                                Icons.mail,
+                                color: Colors.black,
+                              ),
+                            ),
+                            validator: (text) {
+                              if (text.isEmpty || !text.contains('@'))
+                                return "E-mail inválido";
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _passController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              hintText: 'Senha*',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
+                            ),
+                            validator: (text) {
+                              if (text.isEmpty || text.length < 6)
+                                return 'Senha inválida';
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        RaisedButton(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text(
+                              'CADASTRAR',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          color: Colors.white,
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              Map<String, dynamic> userData = {
+                                "name": _nameController.text,
+                                "email": _emailController.text,
+                                "userDocument": _userDocumentController.text,
+                                "userAdmin": false,
+                                "value": 0
+                              };
 
-                            model.signUp(
-                                userData: userData,
-                                pass: _passController.text,
-                                onSucess: _onSucess,
-                                onFail: _onFail);
-                          }
-                        },
-                      ),
-                    ],
+                              model.signUp(
+                                  userData: userData,
+                                  pass: _passController.text,
+                                  onSucess: _onSucess,
+                                  onFail: _onFail);
+                            }
+                          },
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              width: 100,
+                              child: Divider(
+                                color: Colors.white,
+                                height: 50,
+                              ),
+                            ),
+                            Text(
+                              " OU ",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Container(
+                              width: 100,
+                              child: Divider(
+                                color: Colors.white,
+                                height: 50,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: RaisedButton(
+                                color: Colors.blue[900],
+                                child: Text(
+                                  'Facebook',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: RaisedButton(
+                                color: Colors.red,
+                                child: Text(
+                                  'Google',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }
