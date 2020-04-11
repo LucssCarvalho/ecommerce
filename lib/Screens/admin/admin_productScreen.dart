@@ -10,9 +10,6 @@ class AdminProductScreen extends StatefulWidget {
 class _AdminProductScreenState extends State<AdminProductScreen> {
   @override
   Widget build(BuildContext context) {
-    List<String> _category = ['A', 'B', 'C', 'D']; // Option 2
-    String _selectedCategory; // Option 2
-
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -23,21 +20,6 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
         ),
         body: Column(
           children: <Widget>[
-            DropdownButton(
-              hint: Text('Selecione a categoria'), // Not necessary for Option 1
-              value: _selectedCategory,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedCategory = newValue;
-                });
-              },
-              items: _category.map((location) {
-                return DropdownMenuItem(
-                  child: new Text(location),
-                  value: location,
-                );
-              }).toList(),
-            ),
             Expanded(
               child: FutureBuilder<QuerySnapshot>(
                 future:
