@@ -41,95 +41,130 @@ class _LoginScreenState extends State<LoginScreen> {
           )
         ],
       ),
-      body: ScopedModelDescendant<UserModel>(
-        builder: (context, child, model) {
-          if (model.isLoading)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/background/signUp_wallpaper.png',
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ScopedModelDescendant<UserModel>(
+          builder: (context, child, model) {
+            if (model.isLoading)
+              return Center(
+                child: CircularProgressIndicator(),
+              );
 
-          return Form(
-            key: _formKey,
-            child: ListView(
-              padding: EdgeInsets.all(16.0),
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(15),
-                  child: CircleAvatar(
-                    radius: 70,
-                    child: Icon(
-                      Icons.person,
-                      size: 80,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(hintText: 'E-mail'),
-                    validator: (text) {
-                      if (text.isEmpty || !text.contains('@'))
-                        return "E-mail inválido";
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _passController,
-                    obscureText: true,
-                    decoration: InputDecoration(hintText: 'Senha'),
-                    validator: (text) {
-                      if (text.isEmpty || text.length < 6)
-                        return 'Senha inválida';
-                    },
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: FlatButton(
-                    child: Text(
-                      'esqueci minha senha',
-                      style: TextStyle(color: Colors.blue[300]),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => RecoverPassScreen(),
-                        ),
-                      );
-                    },
-                    padding: EdgeInsets.zero,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                RaisedButton(
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        'ENTRAR',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+            return Form(
+              key: _formKey,
+              child: ListView(
+                padding: EdgeInsets.all(16.0),
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(15),
+                    child: CircleAvatar(
+                      radius: 70,
+                      child: Icon(
+                        Icons.person,
+                        size: 80,
                       ),
                     ),
-                    color: Colors.blue[600],
-                    onPressed: () {
-                      //   if (_formKey.currentState.validate()) {}
-
-                      // },
-                      model.signIn(
-                          email: _emailController.text,
-                          pass: _passController.text,
-                          onSucess: _onSucess,
-                          onFail: _onFail);
-                    }),
-              ],
-            ),
-          );
-        },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: 'Nome completo*',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        fillColor: Colors.white,
+                        filled: true,
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: Colors.black,
+                        ),
+                      ),
+                      validator: (text) {
+                        if (text.isEmpty || !text.contains('@'))
+                          return "E-mail inválido";
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextFormField(
+                      controller: _passController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: 'Senha*',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        fillColor: Colors.white,
+                        filled: true,
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: Colors.black,
+                        ),
+                      ),
+                      validator: (text) {
+                        if (text.isEmpty || text.length < 6)
+                          return 'Senha inválida';
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: FlatButton(
+                        child: Text(
+                          'esqueci minha senha',
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => RecoverPassScreen(),
+                            ),
+                          );
+                        },
+                        padding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  RaisedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          'ENTRAR',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
+                      color: Colors.blue[600],
+                      onPressed: () {
+                        model.signIn(
+                            email: _emailController.text,
+                            pass: _passController.text,
+                            onSucess: _onSucess,
+                            onFail: _onFail);
+                      }),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
