@@ -62,15 +62,45 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ListView(
                 padding: EdgeInsets.all(16.0),
                 children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.all(15),
-                    child: CircleAvatar(
-                      radius: 70,
-                      child: Icon(
-                        Icons.person,
-                        size: 80,
-                      ),
-                    ),
+                  // Container(
+                  //   margin: EdgeInsets.all(15),
+                  //   child: CircleAvatar(
+                  //     radius: 70,
+                  //     child: Icon(
+                  //       Icons.person,
+                  //       size: 80,
+                  //     ),
+                  //   ),
+                  // ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/logo_sacola.png'),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              'SACOLA 111',
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.blue[800],
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
@@ -78,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        hintText: 'Nome completo*',
+                        hintText: 'E-mail*',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -160,6 +190,56 @@ class _LoginScreenState extends State<LoginScreen> {
                             onSucess: _onSucess,
                             onFail: _onFail);
                       }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: 100,
+                        child: Divider(
+                          color: Colors.white,
+                          height: 50,
+                        ),
+                      ),
+                      Text(
+                        " OU ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Container(
+                        width: 100,
+                        child: Divider(
+                          color: Colors.white,
+                          height: 50,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          color: Colors.blue[900],
+                          child: Text(
+                            'Facebook',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          color: Colors.red,
+                          child: Text(
+                            'Google',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             );
