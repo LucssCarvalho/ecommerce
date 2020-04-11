@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/modal/product_modal.dart';
 import 'package:ecommerce/tiles/productTile.dart';
+import 'package:ecommerce/widgets/cart_button.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -13,6 +14,7 @@ class CategoryScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        floatingActionButton: CartButton(),
         appBar: AppBar(
           actions: <Widget>[
             IconButton(

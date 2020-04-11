@@ -1,9 +1,11 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:ecommerce/Screens/cart_screen.dart';
 import 'package:ecommerce/Screens/login_screen.dart';
 import 'package:ecommerce/modal/cart_modal.dart';
 import 'package:ecommerce/modal/cart_product.dart';
 import 'package:ecommerce/modal/product_modal.dart';
 import 'package:ecommerce/modal/user_modal.dart';
+import 'package:ecommerce/widgets/cart_button.dart';
 import 'package:flutter/material.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -23,6 +25,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: CartButton(),
       appBar: AppBar(
         title: Text(product.title),
         centerTitle: true,
@@ -134,7 +137,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               } else {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
+                                    builder: (context) => CartScreen(),
                                   ),
                                 );
                               }
