@@ -1,9 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/Screens/admin/admin_editProductScreen.dart';
-import 'package:ecommerce/Screens/category_screen.dart';
-import 'package:ecommerce/Screens/product_screen.dart';
-import 'package:ecommerce/helper/categoryList.dart';
-import 'package:ecommerce/tiles/category_tile.dart';
 import 'package:flutter/material.dart';
 
 class AdminCategoryTile extends StatelessWidget {
