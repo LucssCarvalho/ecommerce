@@ -42,14 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/background/signUp_wallpaper.png',
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
+        color: Colors.blue[900],
         child: ScopedModelDescendant<UserModel>(
           builder: (context, child, model) {
             if (model.isLoading)
@@ -93,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               'SACOLA 111',
                               style: TextStyle(
                                 fontSize: 30,
-                                color: Colors.blue[800],
+                                color: Colors.white,
                                 fontWeight: FontWeight.w500,
                               ),
                             )
@@ -157,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'esqueci minha senha',
                           style: TextStyle(
                             fontWeight: FontWeight.normal,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         onPressed: () {
@@ -219,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: RaisedButton(
-                          color: Colors.blue[900],
+                          color: Colors.blue,
                           child: Text(
                             'Facebook',
                             style: TextStyle(color: Colors.white),
