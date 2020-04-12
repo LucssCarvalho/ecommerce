@@ -25,14 +25,7 @@ class _RecoverPassScreenState extends State<RecoverPassScreen> {
         actions: <Widget>[],
       ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/background/signUp_wallpaper.png',
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
+        color: Colors.blue[900],
         child: ScopedModelDescendant<UserModel>(
           builder: (context, child, model) {
             if (model.isLoading)
@@ -47,14 +40,28 @@ class _RecoverPassScreenState extends State<RecoverPassScreen> {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.all(15),
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/icons/recover_pass.png'),
+                    child: CircleAvatar(
+                      radius: 70,
+                      backgroundColor: Colors.white,
+                      child: Container(
+                        width: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  AssetImage('assets/icons/recover_pass.png'),
+                              fit: BoxFit.contain),
                         ),
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Quer acessar a loja mas esqueceu a senha do seu cadastro ? \n\nDigite agora seu e-mail, que iremos te ajudar a recupera-la.',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontStyle: FontStyle.italic),
                     ),
                   ),
                   Padding(
@@ -88,10 +95,10 @@ class _RecoverPassScreenState extends State<RecoverPassScreen> {
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
                         'RECUPERAR',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(color: Colors.blue, fontSize: 18),
                       ),
                     ),
-                    color: Colors.blue[600],
+                    color: Colors.white,
                     onPressed: () {
                       if (_emailController.text.isEmpty)
                         _scaffoldKey.currentState.showSnackBar(
