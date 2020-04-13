@@ -13,7 +13,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _buildDrawerBack() => Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.blue, Colors.blue[900]],
+              colors: [Colors.white, Colors.blue],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -56,7 +56,7 @@ class CustomDrawer extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                  color: Colors.blue[900]),
                             ),
                           ),
                         ],
@@ -81,7 +81,7 @@ class CustomDrawer extends StatelessWidget {
                                       ? 'Entre ou cadastre-se'
                                       : "Sair",
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.blue,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
