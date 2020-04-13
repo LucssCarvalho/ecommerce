@@ -24,101 +24,149 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: Stack(
         children: <Widget>[
-          _buildDrawerBack(),
+          // _buildDrawerBack(),
           ListView(
-            padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 18.0),
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(bottom: 10),
-                padding: EdgeInsets.fromLTRB(0.0, 16, 16, 8),
-                height: 170,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      top: 20,
-                      left: 0,
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    AssetImage('assets/images/logo_sacola.png'),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Sacola 111',
-                              style: TextStyle(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[900]),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      left: 0.0,
-                      bottom: 0.0,
-                      child: ScopedModelDescendant<UserModel>(
-                        builder: (context, child, model) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+              Column(
+                children: <Widget>[
+                  Container(
+                    color: Colors.blueGrey[50],
+                    margin: EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.fromLTRB(30.0, 30, 18, 0),
+                    height: 170,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          top: 20,
+                          left: 0,
+                          child: Row(
                             children: <Widget>[
-                              Text(
-                                'Olá, ${!model.isLoggedIn() ? "" : model.userData["name"]}',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              GestureDetector(
-                                child: Text(
-                                  !model.isLoggedIn()
-                                      ? 'Entre ou cadastre-se'
-                                      : "Sair",
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/logo_sacola.png'),
+                                  ),
                                 ),
-                                onTap: () {
-                                  if (!model.isLoggedIn())
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => LoginScreen(),
-                                      ),
-                                    );
-                                  else
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => HomeScreen(),
-                                      ),
-                                    );
-                                  model.signOut();
-                                },
-                              )
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Sacola 111',
+                                  style: TextStyle(
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue),
+                                ),
+                              ),
                             ],
-                          );
-                        },
-                      ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0.0,
+                          bottom: 0.0,
+                          child: ScopedModelDescendant<UserModel>(
+                            builder: (context, child, model) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'Olá, ${!model.isLoggedIn() ? "" : model.userData["name"]}',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  GestureDetector(
+                                    child: Text(
+                                      !model.isLoggedIn()
+                                          ? 'Entre ou cadastre-se'
+                                          : "Sair",
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    onTap: () {
+                                      if (!model.isLoggedIn())
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) => LoginScreen(),
+                                          ),
+                                        );
+                                      else
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) => HomeScreen(),
+                                          ),
+                                        );
+                                      model.signOut();
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  )
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Divider(),
-              DrawerTile(Icons.home, "Início", pageController, 0),
-              DrawerTile(
-                  Icons.playlist_add_check, "Meus Pedidos", pageController, 1),
-              UserModel.of(context).userData["userAdmin"] == true
-                  ? DrawerTile(Icons.lock_open, "Opções de administrador",
-                      pageController, 2)
-                  : Row(
-                      children: <Widget>[],
-                    )
+              ScopedModelDescendant<UserModel>(
+                  builder: (context, child, model) {
+                return Column(
+                  children: <Widget>[
+                    DrawerTile(Icons.home, "Início", pageController, 0),
+                    model.isLoggedIn() == true
+                        ? DrawerTile(
+                            Icons.account_balance_wallet,
+                            "Carteira: R\$: ${model.userData['value'].toStringAsFixed(2)}",
+                            pageController,
+                            1)
+                        : Row(
+                            children: <Widget>[],
+                          ),
+                    model.isLoggedIn() == true
+                        ? DrawerTile(Icons.playlist_add_check, "Meus Pedidos",
+                            pageController, 2)
+                        : Row(
+                            children: <Widget>[],
+                          ),
+                    model.isLoggedIn() == true
+                        ? DrawerTile(Icons.card_giftcard, "Aplicar Promoção",
+                            pageController, 3)
+                        : Row(
+                            children: <Widget>[],
+                          ),
+                    model.userData["userAdmin"] == true
+                        ? DrawerTile(Icons.supervised_user_circle,
+                            "Opções de Administrador", pageController, 4)
+                        : Row(
+                            children: <Widget>[],
+                          ),
+                    DrawerTile(Icons.question_answer, "Perguntas Frequentes",
+                        pageController, 5),
+                    Divider(),
+                    model.isLoggedIn() == true
+                        ? DrawerTile(
+                            Icons.settings, "Configurações", pageController, 6)
+                        : Row(
+                            children: <Widget>[],
+                          ),
+                    model.isLoggedIn() == true
+                        ? DrawerTile(Icons.insert_drive_file,
+                            "Termo de Serviço", pageController, 7)
+                        : Row(
+                            children: <Widget>[],
+                          ),
+                  ],
+                );
+              }),
             ],
           )
         ],
