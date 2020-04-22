@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
       body: Container(
-        color: Colors.blue[900],
+        // color: Colors.blue[900],
         child: ScopedModelDescendant<UserModel>(
           builder: (context, child, model) {
             if (model.isLoading)
@@ -72,21 +72,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
                           children: <Widget>[
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/logo_sacola.png'),
-                                ),
-                              ),
-                            ),
+                            // Container(
+                            //   height: 100,
+                            //   width: 100,
+                            //   decoration: BoxDecoration(
+                            //     image: DecorationImage(
+                            //       image: AssetImage(
+                            //           'assets/images/logo_sacola.png'),
+                            //     ),
+                            //   ),
+                            // ),
                             Text(
-                              'SACOLA 111',
+                              'Lodinha',
                               style: TextStyle(
                                 fontSize: 30,
-                                color: Colors.white,
+                                color: Colors.blue,
                                 fontWeight: FontWeight.w500,
                               ),
                             )

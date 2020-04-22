@@ -41,25 +41,22 @@ class CustomDrawer extends StatelessWidget {
                           left: 0,
                           child: Row(
                             children: <Widget>[
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/logo_sacola.png'),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Sacola 111',
-                                  style: TextStyle(
-                                      fontSize: 35,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blue),
-                                ),
+                              // Container(
+                              //   height: 50,
+                              //   width: 50,
+                              //   decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //       image: AssetImage(
+                              //           'assets/images/logo_sacola.png'),
+                              //     ),
+                              //   ),
+                              // ),
+                              Text(
+                                'LODINHA',
+                                style: TextStyle(
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
                               ),
                             ],
                           ),

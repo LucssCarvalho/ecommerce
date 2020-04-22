@@ -25,6 +25,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       floatingActionButton: CartButton(),
       appBar: AppBar(
         title: Text(product.title),
@@ -133,7 +134,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 cartProduct.pid = product.id;
                                 cartProduct.category = product.category;
 
-                                _onFail(context);
+                                _openSnack(context, product);
 
                                 CartModel.of(context).addCartItem(cartProduct);
                               } else {
@@ -178,8 +179,10 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  void _onFail(BuildContext context) {
-    final snackBar = SnackBar(content: Text('Are you talkin\' to me?'));
+  void _openSnack(BuildContext context, ProductModal productModal) {
+    final snackBar = SnackBar(
+        content: Text('Item adicionado ao carrinho ${productModal.title}'));
+    _scaffoldKey.currentState.removeCurrentSnackBar();
     _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 }
