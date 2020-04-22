@@ -1,6 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:ecommerce/Screens/cart_screen.dart';
-import 'package:ecommerce/Screens/login_screen.dart';
 import 'package:ecommerce/modal/cart_modal.dart';
 import 'package:ecommerce/modal/cart_product.dart';
 import 'package:ecommerce/modal/product_modal.dart';
@@ -19,6 +18,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   final ProductModal product;
   String color;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   _ProductScreenState(this.product);
 
@@ -133,6 +133,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                 cartProduct.pid = product.id;
                                 cartProduct.category = product.category;
 
+                                _onFail(context);
+
                                 CartModel.of(context).addCartItem(cartProduct);
                               } else {
                                 Navigator.of(context).push(
@@ -174,5 +176,10 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
       ),
     );
+  }
+
+  void _onFail(BuildContext context) {
+    final snackBar = SnackBar(content: Text('Are you talkin\' to me?'));
+    _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 }
