@@ -11,12 +11,7 @@ class CustomDrawer extends StatelessWidget {
   CustomDrawer(this.pageController);
 
   Widget _buildDrawerBack() => Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.white, Colors.blue],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter),
-        ),
+        decoration: BoxDecoration(color: Colors.white),
       );
 
   @override
@@ -122,7 +117,7 @@ class CustomDrawer extends StatelessWidget {
                     model.isLoggedIn() == true
                         ? DrawerTile(
                             Icons.account_balance_wallet,
-                            "Carteira: R\$: ${model.userData['value'].toStringAsFixed(2)}",
+                            "Carteira: R\$: ${model.userData['value']}",
                             pageController,
                             1)
                         : Row(
